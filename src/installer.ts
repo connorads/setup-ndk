@@ -22,6 +22,7 @@ export async function getNdk(
     core.info('Extracting...')
     const ndkr21bPath = "/usr/local/lib/android/sdk/ndk/21.1.6352462/"
     const extractPath = await tc.extractZip(downloadPath, ndkr21bPath)
+    core.info(`extractPath: ${extractPath}`)
 
     core.info('Adding to the cache...')
     toolPath = await tc.cacheDir(
@@ -29,6 +30,7 @@ export async function getNdk(
       'ndk',
       version
     )
+    core.info(`toolPath: ${toolPath}`)
 
     core.info('Done')
   }
