@@ -53,9 +53,12 @@ function getNdk(version, addToPath) {
             const downloadUrl = getDownloadUrl(version);
             const downloadPath = yield tc.downloadTool(downloadUrl);
             core.info('Extracting...');
-            const extractPath = yield tc.extractZip(downloadPath);
+            const ndkr21bPath = '/usr/local/lib/android/sdk/ndk/21.1.6352462/';
+            const extractPath = yield tc.extractZip(downloadPath, ndkr21bPath);
+            core.info(`extractPath: ${extractPath}`);
             core.info('Adding to the cache...');
             toolPath = yield tc.cacheDir(path.join(extractPath, `android-ndk-${version}`), 'ndk', version);
+            core.info(`toolPath: ${toolPath}`);
             core.info('Done');
         }
         if (addToPath) {
